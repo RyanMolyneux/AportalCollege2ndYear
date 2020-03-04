@@ -1,0 +1,65 @@
+@(currentTopic: models.Topic, user : models.users.User,env : play.api.Environment)
+	@main("Topic",user) {
+<div class="col-sm-2">
+</div>
+	<div class="col-sm-8">
+		<div class="row">
+			
+<div class="panel panel-default" style="margin-top:1em;">
+<div class="panel-heading TextAlignCenter BreakWord" id="mediaTitleBanner">
+<h4>@currentTopic.getName()</h4>
+		</div>
+	</div>
+<a href="@routes.HomeController.addPost(currentTopic.getTopicId())"
+ class="btn" id="ButtonsForum" style="margin:1em;">Add a Post</a>
+	</div>
+
+			@for(c <- currentTopic.getPost()){
+	
+			<div class="panel panel-default" style="margin-bottom:1em;">
+				<div class="panel-heading" id="mediaTitleBanner">
+					<div class="row">
+						<div class="col-sm-1">
+							@if(env.resource("public/images/userImages/"+c.getUser.getName()+".jpg").isDefined) {
+							<img src="/assets/images/userImages/thumbnails/@(c.getUser().getName()+".jpg")" class="img-thumbnail"/>
+							} else {
+							<img src="/assets/images/userImages/thumbnails/default.png" class="img-thumbnail"/>
+							}						
+						</div>
+
+							<div class="col-sm-7 BreakWord">
+							<h4 style="float:left;">  @c.getUser().getName() </h4>
+							</div>
+								<br>
+							<div class="col-sm-4 BreakWord">
+							<h5 style="float:right;"> @c.getPostDate() </h5>
+							</div>
+					</div>
+			                </div>
+
+					<div class="panel-body" id="mediaBorder">
+					<div class="col-sm-9  BreakWord" >
+						<p> @c.getPostDescription() </p>
+						
+					</div>
+				<div class="col-sm-3">
+					@if(user.getEmail == c.getUser.getEmail){
+							<a href="@routes.HomeController.deletePost(c.getId() , currentTopic.getTopicId())" class="btn" id="ButtonsForum"style="margin:1em; 								float:right;">
+										Delete</a>
+					}
+				</div>
+
+			</div>
+			</div>
+		}
+
+
+		
+
+
+		</div>
+<div class="col-sm-2">	
+
+
+</div>
+}

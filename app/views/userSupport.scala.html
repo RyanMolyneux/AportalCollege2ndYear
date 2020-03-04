@@ -1,0 +1,60 @@
+@(user : models.users.User, queryForm : Form[models.supportQueryForm])
+@import helper._
+@main("User Support", user) {
+
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
+			<div class="row">			
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8" id="SupportWrapper">
+					<div id="SupportHeader">
+						<h1 id="textLightRed">Support</h1>
+					</div>
+				
+					<div id="SupportBody">	
+						@if(flash.containsKey("success")) {
+							<div class="alert alert-success" class="TextAlignCenter">
+							@flash.get("success")						
+							</div>
+						} 
+						@if(flash.containsKey("error")) {
+							<div class="alert alert-warning" class="TextAlignCenter">
+							@flash.get("error")						
+							</div>
+						}
+						
+						<div class="page-header" id="SupportHeader">
+						 	<h2>Need Help ? <span id="textLightRed">OR</span> Genral Query</h2>
+						</div>
+						<div id="SupportBody">
+							<p>
+							Well Below you can choose the type of query you have for us and enter it into the text area,We Are here to help Queries 					 may take up to 48 Hours before reply has been sent to your email.
+							</p>			
+					
+							@helper.form(action = routes.HomeController.submitQuery(),'class -> "form-horizontal",'role -> "form") {
+								<div class="form-group">
+								
+								@for((value,name) <- QueryType.options) {
+								<input type="radio" name="queryTypeId" value="@value"/>@name
+								}	
+								</div>
+								<div class="form-group">
+									<label id="FormLabel">Query Text Area </label>
+									<textarea rows="5" name="description" required class="form-control"></textarea>
+								</div>
+								
+								<button type="submit" class="btn" id="Buttons">Submit</button>
+							}
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+				</div>
+			</div>		
+	</div>
+	<div class="col-sm-2">
+	</div>
+
+}

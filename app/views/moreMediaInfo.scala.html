@@ -1,0 +1,55 @@
+@(selectedMedia: models.Media, user : models.users.User)
+
+
+@main("Media Info",user) {
+
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8">
+
+					<div class="row" id="moreMediaInfoBody">
+
+						<div class="col-sm-1">
+						</div>
+						<div class="col-sm-3">
+							<img src="/assets/images/mediaImages/covers/@(selectedMedia.getMedia_ID() +".jpg")" class="image-responsive" id="setWidth" alt="Image of Product/Manga/Anime.">
+						</div>
+						<div class="col-sm-6">
+							<h3><b>@selectedMedia.getTitle()</b></h3>
+						
+							<p>@selectedMedia.getMediaDescription()</p>
+
+							<pre id="FloatLeft">Genre:@selectedMedia.printGenList()</pre>
+							<pre id="FloatLeft" >Rating: @selectedMedia.getMediaRating()/10</pre>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<p>Watch the Anime: <a href="@selectedMedia.getAnimeURL" alt="Anime">GoGoAnime</a></p>
+							<p>Read the Manga: <a href="@selectedMedia.getMangaURL" alt="Manga">GoGoManga</a></p>
+							<br>
+							<br>
+							<br>
+							
+						</div>
+						
+					
+					
+
+					</div>	
+				</div>
+				<div class="col-sm-2">
+				</div>
+				
+
+
+}
+
+
+
+	@*//<pre id="FloatLeft">*@
+@*for(g <- selectedMedia.getGenre) {*@
+	@*GENRE :@g.getGenre(),*@
+@*}*@
+@*</pre>*@

@@ -1,0 +1,51 @@
+@(currentCustomer : models.users.Customer,env : play.api.Environment)
+@import helper._
+
+@main("Edit Profile",currentCustomer) {
+
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8">
+					
+					<div class="col-sm-2">
+					</div>
+					
+					<div class="col-sm-8" id="SignIn-UpWrapper">
+						
+						<div id="SignIn-UpHeader">
+							<span id="TextAlignCenter"><h2 id="textLightRed"> Profile </h2></span>
+						</div>		
+						<div id="SignIn-UpBody">
+							@if(flash.containsKey("success")) {
+								<div class="alert alert-success TextAlignCenter">
+									@flash.get("success")
+								</div>
+							}
+							@if(flash.containsKey("error")) {
+								<div class="alert alert-warning TextAlignCenter">
+									@flash.get("error")
+								</div>
+							}
+							<div class="row">
+					
+								<div class="page-header TextAlignCenter">
+									<h3>Options</h3>
+								</div>
+								
+									<a href="@routes.ShoppingController.viewOrders()" class="btn btn-block" id="Buttons"> View Orders History</a>
+									<a href="@controllers.security.routes.LoginSignUpController.editProfilePhoto()" class="btn btn-block" id="Buttons"> Edit Profile Picture</a>
+				
+								
+							</div>
+						</div>
+					</div>
+					<div class="co-sm-2">
+					</div>				
+				</div>
+				<div class="col-sm-2">
+				</div>
+						
+				
+
+
+}

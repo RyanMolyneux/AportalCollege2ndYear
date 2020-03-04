@@ -1,0 +1,51 @@
+@(advertisementForm : Form[models.Advert],admin : models.users.Admin,env : play.api.Environment)
+@import helper._
+
+@main("Add Advert",admin) {
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
+		<div class="col-sm-2">
+		</div>
+		<div id="adminAdvertWrapper" class="col-sm-8">
+
+			@if(flash.containsKey("success")) {
+
+			}
+			@if(flash.containsKey("error")) {
+			}
+			<div id="adminAdvertHeader">
+				<h2>
+					Add Advert
+				</h2>
+			</div>
+			<div id="adminAdvertBody">
+				@helper.form(action = routes.AdminController.addAdvertSubmit() ,'class -> "form-horizontal",'role -> "form",'enctype ->"multipart/form-data") {
+				<div class="form-group">
+					<label id="FormLabel">AdvertName</label>
+					<input class="form-control" type="text" name="advertName" alt="Input Field for Advert name" />
+				</div>	
+				<div class="form-group">
+					<label>Advert Image</label>
+					@if(env.resource("public/images/advertImages/thumbnails/"+advertisementForm("advertId").value()+".jpg").isDefined) {
+						<p><img src="assets/images/advertImages/thumbnails/@(advertisementForm("advertId").value()+".jpg")"/></p>
+					} else {
+						<p><img src="assets/images/advertImages/thumbnails/noImage.png"/></p>
+					}	
+					<p><input type="file" class="btn-sm" name="upload" /></p> 				
+				</div>
+				<input type="submit" id="Buttons" class="btn" value="Save"/>			
+				}
+				<a href="@routes.AdminController.adminAdvert()" alt="Link to cancel adding advert" class="btn btn-warning">
+				Cancel				
+				</a>
+			</div>
+		</div>	
+		<div class="col-sm-2">
+		</div>
+	</div>
+	<div class="col-sm-2">
+	</div>
+
+
+}

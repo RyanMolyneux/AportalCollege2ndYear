@@ -1,0 +1,77 @@
+@(user : models.users.User, env : play.api.Environment,queries : List[models.supportQuery])
+
+@admin.adminMain("Admin Support", user) {
+	<div class="col-sm-2">
+	
+
+			<!---Navigation Section of query page--->
+	
+			<h4 id="TextAlignCenter">Query Types</h4>
+				
+			<ul class="nav nav-pills nav-stacked">
+				<li id="TextAlignCenter"><a id="OptionalSecondaryNavbar" href="@routes.AdminController.adminSupport(0,false)">All<span class="badge"  id="Badge">@supportQuery.findAll().size()</span></a></li>
+				@for(querytype <- QueryType.findAll()) {
+				<li id="TextAlignCenter"><a id="OptionalSecondaryNavbar" href="@routes.AdminController.adminSupport(querytype.getQueryTypeID,false)">@querytype.getQueryTypeName()<span class="badge" id="Badge">@querytype.getQueryList().size()</span></a></li>
+				}				
+			</ul>
+				
+				<h4 id="TextAlignCenter">Query Status</h4>
+				
+			<ul class="nav nav-pills nav-stacked">
+				<li class="dropdown" id="TextAlignCenter">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="OptionalSecondaryNavbar">Choose Status
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="@routes.AdminController.adminSupport(0,false)">UnAnswered</a><span class="badge" id="Badge"></span></li>
+						<li><a href="@routes.AdminController.adminSupport(0,true)">Answered</a><span class="badge" id="Badge"></span></li>
+					</ul>
+				</li>
+			</ul>
+
+
+
+
+
+	</div>
+	<div class="col-sm-8">
+			<!---Main Section of query page--->
+		<div class="row">		
+			<div class="col-sm-1">
+			</div>	
+			<div class="col-sm-10" >
+			@if(flash.containsKey("success")) {
+			<div class="alert alert-success">
+			 @flash.get("success")
+			</div>
+			}
+			<!---Start of each Querys body--->
+				@for(query <-queries) {
+				<div class="row">
+					<div class="col-sm-12" id="AdminSupportViewWrapper">
+						<div id="AdminSupportViewHeader" >
+							<h2>@query.getQueryType().getQueryTypeName()</h2>
+						</div>
+							
+						<div id="AdminSupportViewBody">
+							<p>USER : @query.getQueryingCustomer().getName() <span id="FloatRight">Date Time : @query.getQueryDate()</span><br>EMAIL : @query.getQueryingCustomer().getEmail()<span id="FloatRight">ANSWERED : @query.getQueryStatus()</span></p>
+							<pre>@query.getQueryDescription()</pre>
+							<a href="@routes.AdminController.changeQueryStatus(query.getQueryID())" class="btn" id="Buttons">
+							 Answered
+						        </a>
+						</div>
+					</div>
+				</div>
+				}
+					
+			<!---End of each Query's body.--->
+					
+					
+			</div>
+			<div class="col-sm-1">
+			</div>
+				
+		</div>
+	</div>
+	<div class="col-sm-2">
+	</div>
+}

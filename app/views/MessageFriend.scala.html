@@ -1,0 +1,58 @@
+@(currentCustomer : models.users.Customer,currentChat : models.Chat,messages : List[models.Message],messageForm : Form[models.Message], env : play.api.Environment)
+
+@main("Chat",currentCustomer) {
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
+	 <div class="col-sm-12" id="findFriendsWrapper">
+		<div id="findFriendsHeader">
+		<h3> @currentChat.getChatName()	</h3>	
+		</div>
+		
+		<div id="findFriendsBody" >
+			@for(message <- messages) {
+			  
+			   <div class="row">
+				<div class="col-sm-12">			
+
+					<div class="row" id="marginTop">
+			  			<div class="col-sm-12 BreakWord" >
+							@if(env.resource("public/images/userImages/"+message.getCustomer().getName()+".jpg").isDefined) {
+
+							<img src="/assets/images/userImages/thumbnails/@(message.getCustomer().getName()+".jpg")" class="img-responsive img-thumbnail" @if(message.getCustomer().getName().equals(currentCustomer.getName())) { id="FloatRight" } else { id="FloatLeft"}/>
+							} else {
+							<img src="/assets/images/userImages/thumbnails/default.png" class="img-responsive img-thumbnail" @if(message.getCustomer().getName().equals(currentCustomer.getName())) { id="FloatRight" } else { id="FloatLeft"}/>
+}
+						
+					
+							<h4 @if(message.getCustomer().getName().equals(currentCustomer.getName())) { id="FloatRight" } else { id="FloatLeft"}>@message.getCustomer().getName()</h4>				
+						</div>					
+					</div>
+					<div class="row">
+						<div class="col-sm-12" @if(message.getCustomer().getName().equals(currentCustomer.getName())) { id="MessageBox" } else { id="MessageBox2"}>
+				
+							<p class="BreakWord" @if(message.getCustomer().getName().equals(currentCustomer.getName())) { id="TextAlignRight" } else { id="TextAlignLeft"}>@message.getMessageDesc()</p>
+						</div>
+					</div>
+					<p @if(message.getCustomer().getName().equals(currentCustomer.getName())) { id="TextAlignRight" } else { id="TextAlignLeft"}>@message.getMessageTime()</p>
+				</div>
+			 
+			</div>			
+			
+		      }
+		<form action="@routes.HomeController.MessageFriendSubmit(currentChat.getChatId())" method="POST" id="marginTop">		
+			<div class="form-group">
+				<textarea row="10" class="form-control" required name="messageDesc"></textarea>
+			</div>
+				<button type="submit" class="btn" id="smallButtons">Send</button>
+		</form>			
+			</div>
+	  </div>	
+			
+	</div>
+	
+	<div class="col-sm-2">
+	</div>
+
+
+}

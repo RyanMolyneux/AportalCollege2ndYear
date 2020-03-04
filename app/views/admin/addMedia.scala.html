@@ -1,0 +1,72 @@
+@* addProductForm defined above is the parameter passed to this view by the controller *@
+@import helper._
+
+@(addMediaForm: play.data.Form[models.Media], user: models.users.User, env: play.api.Environment)
+
+@* helpers will be used to create the form dynamically, though static HTML form element also work. *@
+
+@admin.adminMain("Add Media", user) {
+	<div class="col-sm-3">
+		</div>
+		<div class="col-sm-6">
+	<h3>Add a new Media</h3>
+	<!-- Use the views.html.helpers package to create the form -->
+	@form(action = routes.AdminController.addMediaSubmit(), 'class -> "form-horizontal",
+		'role->"form", 'enctype -> "multipart/form-data") {
+		
+		<!-- Build the form, adding an input for each field -->
+		<!-- Note the label parameter -->
+		@inputText(addMediaForm("title"), '_label -> "Title",'class -> "form-control")
+		
+		<label id="FormLabel">Description</label>
+		<textarea row="5" name="mediaDescription" class="form-control"></textarea>
+		@for((value,name) <- Genre.options) {
+			<br>
+			<label id="FormLabel">@name</label>
+			<input type="checkbox" name="genSelect[]" value="@value"
+				@if(addMediaForm("genre_ID").value != null) {
+					@if(Genre.inGenre(value.toLong,addMediaForm("media_ID").value.toLong)) {
+						checked
+					}				
+				}
+
+			/>
+		}
+		@inputText(addMediaForm("mediaRating"), '_label -> "Rating",'class -> "form-control")
+		@inputText(addMediaForm("animeURL"), '_label -> "Anime link",'class -> "form-control")
+		@inputText(addMediaForm("mangaURL"), '_label -> "Manga link",'class -> "form-control")
+
+
+		<!-- Image upload input -->
+		<div class="container-fluid">
+			<div class="row">
+				<label>Image</label>
+			</div>
+			<div class="row">
+				@if(env.resource("public/images/mediaImages/covers/" + addMediaForm("media_ID").value() + ".jpg").isDefined) {
+					<p><img src="/assets/images/mediaImages/covers/@(addMediaForm("media_ID").value() + ".jpg")"/></p>
+				} else {
+					<p><img src="/assets/images/mediaImages/covers/noImage.png"/></p>
+				}
+			</div>
+			<div class="row">
+				<input class="btn-sm btn-default" type="file" name="upload">
+			</div>
+		</div>
+
+		<!-- Hidden ID field - required for product updates -->
+		@inputText(addMediaForm("media_ID"), '_label -> "", 'hidden -> "hidden")
+
+	<!-- Add a submit button -->
+  <div class="actions">
+      <input type="submit" value="Save" class="btn btn-primary">
+			<a href="@routes.AdminController.adminMedia()"><button class="btn btn-warning">Cancel</button>
+	  		</a>
+  </div>
+	} <!-- End Form definition -->
+			<div class="col-sm-3">
+				</div>
+
+	</div>
+} <!-- End of page content -->
+

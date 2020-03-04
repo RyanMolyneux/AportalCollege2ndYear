@@ -1,0 +1,93 @@
+@(loginForm: Form[models.users.Login], user: models.users.User,signUpForm: Form[models.users.SignUp])
+@import helper._
+
+@* Pass page title and content {html between braces} to the main view *@
+@main("Login", user) {
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
+  <!-- HTML content for the index view -->
+ 	   <div class="row">
+	        <div class="col-sm-1">
+
+	        </div>
+	            <div  class="col-sm-5" id="SignIn-UpWrapper"><!---Start of Sign In Form--->
+	              <div  id="SignIn-UpHeaders">
+	                 <h2>Sign <span id="textLightRed">In</span></h2>
+	             </div>
+	            <!-- Display login errors if they exist -->
+	              @if(loginForm.hasGlobalErrors) {
+	               <p class="alert alert-warning TextAlignCenter">
+	               @loginForm.globalError.message
+	              </p>
+	                }
+	              @if(flash.containsKey("error")) {
+	                <div class="alert alert-warning TextAlignCenter">
+	                @flash.get("loginRequired")
+	                </div>
+	                }
+	                <!-- The login form -->
+	                <div id="SignIn-UpBody">
+	                    @helper.form(action = controllers.security.routes.LoginSignUpController.loginSubmit()) {
+
+	                     <div class="form-group">
+	                       @inputText(loginForm("email"), '_label -> "Email",'id -> "FormLabel",'class -> "form-control input-xs", 'placeholder -> "Email")
+	                     </div>
+	                     <div class="form-group">
+	                       @inputPassword(loginForm("password"), '_label -> "Password",'id -> "FormLabel",'class -> "form-control input-xs", 'placeholder -> "Password")
+	                     </div>
+
+	                    <!-- Add a submit button -->
+	                    <input type="submit" value="Confirm" class="btn" id="Buttons"></input>
+	                 </div>
+	                }
+	             </div>
+
+	    <div class="col-sm-5" id="SignIn-UpWrapper">
+	            <!---Start of SignUp Form--->
+	        <div id="SignIn-UpHeaders">
+	            <h2>Sign <span id="textLightRed">Up</span></h2>
+	        </div>
+		@if(signUpForm.hasGlobalErrors) {
+		  <div class="alert alert-warning">
+		  @signUpForm.globalError.message
+		  </div>
+		}
+		@if(flash.containsKey("error"))	{
+		<div class="alert alert-warning">
+		 @flash.get("missing field")		
+		</div>
+		}
+	        @helper.form(action = controllers.security.routes.LoginSignUpController.signUpSubmit(),'id-> "SignIn-UpBody") {
+
+		    <div class="form-group">
+			<label id="form-group">Email</label>
+	                <input type="text" name="email" required class="form-control" placeholder="Email">
+	            </div>
+		    <div class="form-group">
+			<label id="FormLabel">User Name</label>
+	                <input type="text" name="userName" required class="form-control" placeholder="Username">
+	            </div>
+	            <div class="form-group">
+	                <label id="FormLabel">Password</label>
+			<input type="password" name="password" required class="form-control" placeholder="Password">
+	            </div>
+		    <div class="form-group">
+			<label id="FormLabel">Confirm Password</label>
+			<input type="password" name="passwordConfirm"  class="form-control" placeholder="Confirm Password">
+		    </div>
+
+	           
+	        
+
+	            <input type="submit" value="Confirm" class="btn" id="Buttons"></input>
+	
+	        }
+	            <!---End of Sign Up form--->
+	    </div>
+	    </div>
+  <!-- End of content for main -->
+	</div>
+	<div class="col-sm-2">
+	</div>
+}

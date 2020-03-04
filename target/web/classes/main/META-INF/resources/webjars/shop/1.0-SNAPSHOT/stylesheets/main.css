@@ -1,0 +1,252 @@
+
+/*ID - Section*/
+
+/*Used to Style Left Navigation Bar.*/
+#NavLeftBar
+{
+ border-radius:0em 0em 100em 0em;
+}
+/*Used to Style Center Navigation Bar.*/
+#NavCentBar
+{
+ border-radius:50em 50em 0em 0em;
+}
+/*Used to Style Right Navigation Bar.*/
+#NavRightBar
+{
+ border-radius:0em 0em 0em 100em;
+}
+/*Used to Style Search Bar.*/
+#SearchBar
+{
+ border-radius: 0em 0em 50em 50em;
+}
+/*Used to Style the top of the Footer of Each page.*/
+#FooterTop
+{
+ border-radius:0.2em;
+ text-align:center;
+
+}
+/*Used to Style Links in the Footer.*/
+#FooterLink
+{
+ text-decoration:none;
+ font-size:0.8em;
+}
+/*Used to color text light Red/Orange.*/
+ #textLightRed,#ButtonsForum,#Title,#FooterLink,#Buttons,#smallButtons,#navButtons,#mediaTitleBanner,#AdminSupportViewQueryDate,#AdminSupportViewHeader,#ForumTitleBanner,#forumIcon,#Badge,#adminAdvertHeader
+,#adminProductsHeader,#findFriendsHeader,#MessageBox,#productInfoHeader
+{
+ color:#e64d00;
+}
+/*Used to color text dark Red.*/
+#textDarkRed,#FooterTop,#SignIn-UpHeaders,#OptionalSecondaryNavbar,#MessageBox2
+{
+ color:#d12e2e;
+}
+/*Used to colour text light grey used in rare cases*/
+#textLightGrey,#SignUp-Optional
+{
+	color:#999999;
+}
+/*Used to Border The Pages Top Navigation Bars.*/
+#SearchBar,#NavLeftBar,#NavCentBar,#NavRightBar
+{
+ border: 0.2em solid #d12e2e;
+}
+/*Used to style border & colour it grey*/
+#borderGrey,#mediaTitleBanner,#mediaBorder,#ForumTitleBanner,#forumIcon
+{
+	border: 0.2em solid #404040;
+}
+/*Used to colour background white*/
+#BackgroundWhite,#productInfoBody
+{
+ background-color:white;
+}
+/*Used to color background light Grey.*/
+#BackgroundLightGrey,#FooterBottom,#SignIn-UpBody,#SupportBody,#AdminHomeBody,#AdminSupportViewBody,#Badge,#adminAdvertBody,#adminProductsBody,#findFriendsBody
+{
+ background-color:#EEEEEE;
+}
+/*Used to color background Dark grey.*/
+#BackgroundDarkGrey,#ButtonsForum,#Title,#forumIcon,#SearchBar,#NavLeftBar,#NavCentBar,#NavRightBar,#FooterTop,#Buttons,#smallButtons,#navButtons,#mediaTitleBanner,#SignIn-UpWrapper,#SupportWrapper,#productInfoWrapper,#AdminHomeWrapper,#AdminSupportViewWrapper,#OptionalSecondaryNavbar,#ForumTitleBanner,#adminAdvertWrapper,#adminProductsWrapper,#findFriendsWrapper,#MessageBox
+{
+ background-color:#404040;
+}
+/*Used to set width of the area a certain object can take up of the space provided.*/
+#setWidth
+{
+	width:100%;
+}
+/*Used in some case to get space between object & other pages content*/
+#marginTop
+{
+	margin-top:1em;
+}
+/*Used to center the search bar*/
+#marginLeft
+{
+	margin-left:2em;
+}
+/*Used to style name for desktop mode*/
+#logoName
+{
+	width:15%;
+}
+/*Used to style icon for desktop mode*/
+#logoIcon
+{
+	width:10%;
+}
+#icon{
+	width: 4%;
+}
+/*Profile edit page photo styling*/
+#ProfilePhoto
+{
+	margin:auto;
+}
+/*Used to Style Buttons*/
+#CancelButtons
+{
+font-size:1.2em;
+}
+#Buttons,#smallButtons,#ButtonsForum
+{
+	border: solid 0.2em #404040;
+	
+}
+#navButtons
+{
+	font-size:0.8em;
+	border : solid 0.1em #FFFFFF;
+}
+#smallButtons
+{
+	font-size:0.9em;
+}
+#bigButtons,#Buttons
+{
+	font-size:1.2em;
+}
+/*Badge styling for categories&genre*/
+#Badge
+{
+
+
+}
+/*Used to Style Form Labels*/
+#FormLabel
+{
+	font-size :1.15em ;
+}
+
+/*Used to create common style of the content of most pages*/
+#SignIn-UpWrapper,#SupportWrapper,#AdminHomeWrapper,#AdminSupportViewWrapper,#adminAdvertWrapper,#adminProductsWrapper,#findFriendsWrapper,#productInfoWrapper
+{
+	margin:1em;
+	border-radius:1em;
+	border-bottom:0.2em solid #404040;
+	
+}
+
+/*Used to Align text in the Center of its current position on the page.*/
+#TextAlignCenter,#Title,#SignIn-UpHeaders,#SupportHeader,#AdminHomeHeader,#AdminSupportViewHeader,#SignUp-Optional,#AdminHomeTitle,#ForumTitleBanner,#adminAdvertHeader,#adminProductsHeader,#findFriendsHeader,#productInfoHeader
+{
+	text-align:center;
+}
+
+/*Used to Align text to the right of its current position on the page.*/
+#TextAlignRight
+{
+	text-align:right;
+}
+/*Used to float object's on the page to the right.*/
+#FloatRight,#Buttons,#Badge,#smallButtons
+{
+	float:right;
+	clear:both;
+}
+#FloatLeft
+{
+	float:left;
+	clear:both;
+}
+/*Used to style the body of the content on most pages.*/
+#SignIn-UpBody,#SupportBody,#AdminHomeBody,#AdminSupportViewBody,#adminAdvertBody,#adminProductsBody,#findFriendsBody,#productInfoBody
+{
+	padding-top:0.8em;
+	padding-right:3.5em;
+	padding-left:3.5em;
+	padding-bottom:3.5em;
+	border-radius: 0em 0em 0.4em 0.4em;
+	
+}
+#moreProductInfoBody
+{
+	margin:1em;
+}
+#MessageBox
+{
+	border-radius: 0.2em;
+	font-size:1.25em;
+}
+#MessageBox2
+{
+	border-radius: 0.2em;
+	font-size:1.25em;
+	background-color: #DDDDDD;
+	
+}
+.BreakWord
+{
+	word-wrap : break-word;
+}
+.TextAlignCenter
+{
+	text-align:center;
+}
+
+
+/*CLASSES - Section*/
+
+/*Used for the Advertisement carousel.*/
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+	  
+      width: 100%;
+      margin: auto;
+  }
+  
+  
+  
+  
+/*MEDIA QUERY - Section*/
+
+
+/*Used to edit the navbar at a certain width.*/
+@media screen and (max-width: 1710px) 
+	{
+		#NavbarResponsive,#SearchBar,#NavLeftBar,#NavCentBar,#NavRightBar
+		{
+         	 background-color: #404040;
+		 border: 0.2em solid #404040;
+		}
+				
+	}
+/*Used to re-size the websites name.*/
+@media screen and (max-width: 760px)
+	{
+		#logoName
+		{
+		  width:40%;
+		}
+		#logoIcon
+		{
+		  width: 20%;  
+		}
+		
+	}
+

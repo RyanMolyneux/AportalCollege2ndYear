@@ -1,0 +1,164 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+
+#######################
+# Puvlic Site  Routes #
+#######################
+GET     /                       controllers.HomeController.index()
+
+# This is a http route used to get to the about page on our website.
+GET     /about                  controllers.HomeController.about
+
+GET	/userSupport		controllers.HomeController.userSupport
+
+POST 	/submitQuery		controllers.HomeController.submitQuery
+
+# products accepts a parameter default to 0 (Long)
+GET     /products               controllers.HomeController.products(cat:Long ?=0L,filter?="")
+
+GET	/moreProductInfo	controllers.HomeController.moreProductInfo(prodID:Long ?=0L)
+
+# media page route.
+GET     /media               controllers.HomeController.media(gen:Long ?=0L, filter?="")
+
+GET	/moreMediaInfo	controllers.HomeController.moreMediaInfo(medId:Long ?=0L)
+
+GET	/UhOh		controllers.HomeController.UhOh
+
+#Igors routes
+
+
+GET     /forum                  controllers.HomeController.forum(filter?="")
+
+GET     /addTopic               controllers.HomeController.addTopic
+
+GET     /addTopicSubmit         controllers.HomeController.addTopicSubmit
+
+GET     /topic			        controllers.HomeController.topic(id: Long)
+
+GET     /deletePost             controllers.HomeController.deletePost(postId: Long, topicId: Long)
+
+GET     /addPost                controllers.HomeController.addPost(id: Long)
+
+POST    /addPostSubmit          controllers.HomeController.addPostSubmit
+
+GET     /deleteTopic            controllers.HomeController.deleteTopic(topicId: Long)
+
+#End Of Igors Routes
+
+
+
+
+
+
+
+
+################
+# Admin Routes #
+################
+#This is used to generate the Administrators index page for the admin.
+GET	   /admin/indexAdmin		    controllers.AdminController.indexAdmin
+# products accepts a parameter default to 0 (Long)
+GET     /admin/products               controllers.AdminController.products(cat:Long ?=0L)
+
+# Request to load the add product form
+GET     /admin/addproduct                  controllers.AdminController.addProduct
+
+# Data submitted by the form
+POST    /admin/addProductSubmit            controllers.AdminController.addProductSubmit
+
+# Delete a product by an id passed as a parameter
+GET    /admin/delProduct/:id               controllers.AdminController.deleteProduct(id: Long)
+
+# Update a product by id
+GET	    /admin/updateProduct/:id        controllers.AdminController.updateProduct(id: Long)
+
+#This generates the administrators view of the support page were he can view queries.
+GET	    /admin/adminSupport		    controllers.AdminController.adminSupport(queryType : Long ?=0L,queryStatus : Boolean ?= false)
+
+#This is may be a post function in the future but at the moment it has been set to a simple get function using the url bar
+GET	    /admin/changeQueryStatus	    controllers.AdminController.changeQueryStatus(queryId : Long)
+
+GET     /admin/adminMedia               controllers.AdminController.adminMedia(gen:Long ?=0L)
+
+# Request to load the add product form
+GET     /admin/addmedia                  controllers.AdminController.addMedia
+
+# Data submitted by the form
+POST    /admin/addMediaSubmit            controllers.AdminController.addMediaSubmit
+
+# Delete a product by an id passed as a parameter
+GET    /admin/delMedia/:id               controllers.AdminController.deleteMedia(id: Long)
+
+# Update a product by id
+GET	    /admin/updateMedia/:id        controllers.AdminController.updateMedia(id: Long)
+
+
+
+#This is the route for the Admin to the adverts page they can reach it through the adminIndex page.
+GET	    /admin/adminAdvert		    controllers.AdminController.adminAdvert
+
+#This is the route to the form page to add a new advert to the website.
+GET	    /admin/adminAdvert/addAdvert    controllers.AdminController.addAdvert
+
+#This is the route used to post the new advertisement to the website.
+POST	    /admin/adminAdvert/addAdvertSubmit controllers.AdminController.addAdvertSubmit
+
+#This is the route to delete advert from the website.
+GET	    /admin/delAdvert		    controllers.AdminController.deleteAdvert(advertId : Long)
+
+#This is used when exception is triggered
+GET 	    /admin/UhOh			    controllers.AdminController.UhOh
+
+#User Friend & Chat Routes.
+
+GET	   /FriendPortal		    controllers.HomeController.findFriends(name?="")
+
+GET	   /FriendPortal/SendRequest	    controllers.HomeController.sendRequest(name : String)
+
+GET	   /ChatPortal			    controllers.HomeController.Chat(option: Long ?= 0)
+
+GET	   /ChatPortal/AcceptRequest	    controllers.HomeController.addFriend(option : Long ?= 0L,pendingFriendId : String)
+
+GET    /ChatPortal/DeclineRequest       controllers.HomeController.declineRequest(declinedCustomer : String)
+
+GET	   /ChatPortal/MessageFriend/:name  	    controllers.HomeController.MessageFriend(name: String)
+
+POST	   /ChatPortal/MessageFriendSubmit	    controllers.HomeController.MessageFriendSubmit(chatId: Long)
+
+
+##########################
+# Login & Sign Up routes #
+##########################
+#Login
+GET     /login                       controllers.security.LoginSignUpController.login
+POST    /loginSubmit                 controllers.security.LoginSignUpController.loginSubmit
+GET     /logout                      controllers.security.LoginSignUpController.logout
+#SignUp
+POST	/signUpSubmit		     controllers.security.LoginSignUpController.signUpSubmit
+#Profile Edit
+GET	/editProfile		     controllers.security.LoginSignUpController.editProfile
+GET	/editProfilePhoto	     controllers.security.LoginSignUpController.editProfilePhoto
+POST	/editProfilePhotoSubmit	     controllers.security.LoginSignUpController.editProfilePhotoSubmit
+
+############################
+#Shopping Controller Routes#
+############################
+
+GET     /showBasket             controllers.ShoppingController.showBasket
+GET     /addBasket              controllers.ShoppingController.addToBasket(id: Long)
+GET     /addOne                 controllers.ShoppingController.addOne(itemId: Long)
+GET     /removeOne              controllers.ShoppingController.removeOne(itemId: Long)
+GET	/confirmBasketOrder	controllers.ShoppingController.placeOrder
+GET	/viewOrders		controllers.ShoppingController.viewOrders
+
+# An example controller showing how to use dependency injection
+GET     /count                       controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                     controllers.AsyncController.message
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)

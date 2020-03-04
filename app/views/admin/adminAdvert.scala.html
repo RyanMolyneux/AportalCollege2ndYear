@@ -1,0 +1,73 @@
+@(adverts : List[models.Advert],admin : models.users.Admin,env : play.api.Environment)
+
+@main("Admin Advert",admin) {
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
+		<div class="col-sm-1">
+		</div>
+		<div id="adminAdvertWrapper" class="col-sm-10">
+			
+			<div id="adminAdvertHeader" >
+				<h2> Edit Advertisements </h2>			
+			</div>
+			<div id="adminAdvertBody">
+				@if(flash.containsKey("success")) {
+					<div class="alert alert-success">
+					@flash.get("success")					
+					</div>				
+				}
+				<table class="table table-bordered table-hover table-condensed">	
+					<thead>
+						<tr>
+							<th>
+							Advert ID
+							</th>
+							<th>
+							Advert Name
+							</th>
+							<th>
+							Advert Admin
+							</th>
+							<th>
+							Date Added
+							</th>
+							<th>
+							Remove Advert
+							</th>
+							
+						</tr>
+					<thead>
+					<tbody>
+						@for(advert <- adverts) {
+						<tr>
+							<td>
+							@advert.getAdvertId()
+							</td>
+							<td>
+							@advert.getAdvertName()
+							</td>
+							<td>
+							@advert.getAdvertAdmin().getName()
+							</td>
+							<td>
+							@advert.getAdvertDateAdded()
+							</td>
+							<td>
+							<a href="@routes.AdminController.deleteAdvert(advert.getAdvertId())" alt="Link to delete advert" class="btn-xs btn-danger">
+							<span class="glyphicon glyphicon-trash"> </span>
+							</a>							
+							</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+				<a href="@routes.AdminController.addAdvert()" id="Buttons" class="btn">Add Advert</a>
+			</div>
+		</div>	
+		<div class="col-sm-1">
+		</div>
+	</div>
+	<div class="col-sm-2">
+	</div>
+}

@@ -1,0 +1,77 @@
+@(currentCustomer: models.users.Customer , customers: List[models.users.Customer],env : play.api.Environment)
+
+@main("Friend Portal",currentCustomer) {
+
+	<div class="col-sm-3">
+	
+	
+	</div>
+	<div class="col-sm-6" id="findFriendsWrapper">
+
+
+
+
+		
+			<div id="findFriendsHeader">
+				<h2>Find Friends</h2>			
+			</div>
+			<div class="row">
+			<div class="col-sm-4">
+			</div>
+			<!---Start of Search Bar Form--->
+			<div class="col-sm-4" >
+				
+					<form class="navbar-form" action="@routes.HomeController.findFriends()" method="GET" id="marginLeft">
+						<div class="input-group" >
+							<input type="search" name="name"  class="form-control" placeholder="Search">
+								
+							<div class="input-group-btn">
+								<button type="submit" class="btn btn-default" id="textDarkBrown">
+									<i class="glyphicon glyphicon-search">
+									</i>
+								</button>
+							</div>
+						</div>
+					</form>
+			</div>
+			
+			<div class="col-sm-4">
+			</div>  
+			</div>
+
+			<!---End of Search Bar Form--->
+
+
+			<div id="findFriendsBody">
+				@if(flash.containsKey("success")) {
+					<div class="alert alert-success">
+					@flash.get("success")				
+					</div>
+				}
+
+				
+				@if(flash.containsKey("error")) {
+					<div class="alert alert-warning">
+					@flash.get("error")			
+					</div>
+				}
+				@for(customer <-customers) {
+					<div class="row">
+						<div class="col-sm-12">
+						@if(env.resource("public/images/userImages/"+customer.getName()+".jpg").isDefined) {
+						<img src="assets/images/userImages/thumbnails/@(customer.getName()+".jpg")" id="FloatLeft" class="img-responsive img-thumbnail" id="marginLeft"/>
+						} else {
+						<img src="assets/images/userImages/thumbnails/default.png" id="FloatLeft" class="img-responsive img-thumbnail"/ id="marginLeft">
+						}
+						<h3>@customer.getName()</h3>
+						<a href="@controllers.routes.HomeController.sendRequest(customer.getName())" class="btn" id="smallButtons">Send Friend Request</a> 					
+						</div>
+					</div>
+					<hr>
+				}
+			</div>		
+		
+	</div>
+	<div class="col-sm-3">
+	</div>
+}

@@ -1,0 +1,31 @@
+@(customer: models.users.Customer)
+
+@main("viewOrders",customer) {
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+        <div class="table-responsive">
+            @for( order <- customer.getOrders()){
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>Order Date</th>
+                        <th>Items Ordered</th>
+                    </tr>
+                </thead>
+                <tbody>
+			
+		@for(item <- order.getItems()) {
+                    <tr>
+                        <td>@order.getOrderDate()</td>
+                        <td>@item.getProduct().getName()</td>
+                    </tr>
+		}
+                </tbody>
+            </table>
+            }
+        </div>
+    </div>
+    <div class="col-sm-2">
+    </div>
+}

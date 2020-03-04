@@ -1,0 +1,38 @@
+@(user: models.users.User)
+
+<!-- Pass page title and content {html between braces} to the main view -->
+@main("About", user) {
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
+	</div>
+
+  <!-- HTML content for the index view -->
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <div class="col-sm-2">
+	            </div>
+	            <div class="col-sm-8">
+	                <h2>About Us</h2>
+	                <p>We are a website for fans of all things <a href="/manga.html" id="textDarkRed">Manga</a> and <a href="/anime" id="textDarkRed">Anime</a>, we provide access to anime and manga
+                    available online aswell as allowing people to <a href="/products.html" id="textDarkRed">Purchase Products</a> related to anime and manga.</p>
+ 	               <p>We were founded in 2016 by a team of 4 people with the aim to make anime and manga more accessable to a wider audience.</p>
+	                <p>We also strive to provide a sense of community for all users of our site with our <a href="/forum.html" id="textDarkRed">Forum</a> section allowing users to discuss anime, manga or anything else!</p>
+	                <h3>Find us on social media!</h3>
+	                <a href="https://www.facebook.com"><img src="facebook.png" alt="Facebook" style="width:10%"></a>
+	                <a href="https://www.twitter.com"><img src="twitter.png" alt="Twitter" style="width:10%"></a>
+	                <a href="https://www.instagram.com"><img src="insta.jpg" alt="Instagram" style="width:10%"></a>
+
+
+
+
+            	</div>
+            	<div class="col-sm-2">
+            	</div>
+            </div>
+    	 </div>
+    <!-- End of content for main -->
+	</div>
+	<div class="col-sm-2">
+	</div>
+}

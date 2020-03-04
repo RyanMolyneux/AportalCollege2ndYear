@@ -1,0 +1,31 @@
+@import helper._
+
+@(addTopicForm: play.data.Form[models.Topic], user: models.users.User, env: play.api.Environment)
+
+@main("Add Topic", user) {
+	<div class="col-sm-2">
+	</div>
+		<div class="col-sm-8">
+			<div class="row">
+	<h3>Add a new Topic</h3>
+	
+@form(action = routes.HomeController.addTopicSubmit(), 'class -> "form-horizontal",
+		'role->"form", 'enctype -> "multipart/form-data") {
+	@inputText(addTopicForm("id"), '_label -> "", 'hidden -> "hidden")
+@inputText(addTopicForm("name"), '_label -> "Name",'class -> "form-control")
+@inputText(addTopicForm("description"), '_label -> "Description",'class -> "form-control")
+
+			</div>
+	<!-- Add a submit button -->
+  <div class="actions">
+      <input type="submit" value="Save" class="btn" id="ButtonsForum" style=" margin:1em;">
+	<a href="@routes.HomeController.forum()" class="btn" id="ButtonsForum" style="margin:1em; float:right;">Cancel</a>
+  </div>
+		</div>
+<div class="col-sm-2">
+	</div>
+
+	} <!-- End Form definition -->
+
+} <!-- End of page content -->
+

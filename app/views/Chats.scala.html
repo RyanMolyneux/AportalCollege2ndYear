@@ -1,0 +1,78 @@
+@(currentCustomer: models.users.Customer,friends : List[models.FriendList],pendingFriends : List[models.FriendList],option: Long, env : play.api.Environment)
+
+@main("Chat Portal",currentCustomer) {
+	<div class="col-sm-4">
+	</div>
+	<div class="col-sm-4" id="findFriendsWrapper">
+			<div id="findFriendsHeader" >
+				<h2>Friends</h2>			
+			</div>
+			
+			<div id="findFriendsBody">
+				<div class="btn-group btn-group-justified"> 
+					
+					<a href="@controllers.routes.HomeController.Chat(0)" class="btn btn-default" id="navButtons" >Chat Friends</a>
+					<a href="@controllers.routes.HomeController.Chat(1)" class="btn btn-default" id="navButtons">Friend Requests</a>
+				</div>
+ 
+				@if(flash.containsKey("success")) {
+					<div class="alert alert-success">
+						<p>@flash.get("success")</p>				
+					</div>
+				}
+				@if(flash.containsKey("error")) {
+					<div class="alert alert-warning">
+						<p>@flash.get("error")</p>
+					</div>
+				}
+			
+
+
+
+
+
+				@if(option == 0){
+					@for(friend <- friends) {
+						<div class="row" id="marginTop">
+							<a href="@controllers.routes.HomeController.MessageFriend(friend.getFriendListName())">
+								<div class="col-sm-2">
+							
+								@if(env.resource("public/images/userImages/"+friend.getFriendListName()+".jpg").isDefined) {
+										<img src="/assets/images/userImages/thumbnails/@(friend.getFriendListName() +".jpg")" class="img-responsive img-thumbnail"/>
+								} else {
+								<img src="/assets/images/userImages/thumbnails/default.png" class="img-responsive img-thumbnail"/>								
+								}
+								</div>
+								<div class="col-sm-10" style="color:black;">
+									<h3> @friend.getFriendListName()</h3>
+								</div>							
+							</a>		
+						</div>			
+					}
+				} else {
+					@for(pendingFriend <-pendingFriends) {
+						<div class="row" id="marginTop">
+							<div class="col-sm-2">
+								@if(env.resource("public/images/userImages/"+pendingFriend.getFriendListName()+".jpg").isDefined) {
+									<img src="/assets/images/userImages/thumbnails/@(pendingFriend.getFriendListName()+".jpg")" class="img-responsive img-thumbnail"/>
+								} else {
+									<img src="/assets/images/userImages/thumbnails/default.png" class="img-responsive img-thumbnail"/>
+								
+								}
+							</div>
+							<div class="col-sm-10">
+								<h3> @pendingFriend.getFriendListName()</h3>
+								<a href="@controllers.routes.HomeController.addFriend(option,pendingFriend.getFriendListName())" class="btn" id="smallButtons">Accept</a><a href="@controllers.routes.HomeController.declineRequest(pendingFriend.getFriendListName())" class="btn btn-warning">Decline</a>
+							</div>
+						</div>
+					}
+				}
+				
+			</div>
+		
+	</div>
+	<div class="col-sm-4">
+	</div>
+
+
+}

@@ -1,0 +1,67 @@
+@(currentCustomer : models.users.Customer,editProfilePhoto : Form[models.users.editProfileForm],env : play.api.Environment)
+
+@import helper._
+
+@main("Edit Profile Picture",currentCustomer) {
+
+			@helper.form(action = controllers.security.routes.LoginSignUpController.editProfilePhotoSubmit(),'class ->"form-horizontal",'role -> "form",'enctype -> "multipart/form-data") {
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8">
+					
+					<div class="col-sm-2">
+					</div>
+					
+					<div class="col-sm-8" id="SignIn-UpWrapper">
+						
+						<div id="SignIn-UpHeader">
+							<span id="TextAlignCenter"><h2 id="textLightRed"> Profile </h2></span>
+						</div>		
+						<div id="SignIn-UpBody">
+						@if(flash.containsKey("success")) {
+							<div class="alert alert-success TextAlignCenter">
+								@flash.get("success")
+							</div>
+						}
+						@if(flash.containsKey("error")) {
+							<div class="alert alert-warning TextAlignCenter">
+								@flash.get("error")
+							</div>
+						}
+						
+								<div class="page-header TextAlignCenter">
+									<h3>Edit Profile Picture</h3>
+								</div>
+								<div class="row">
+									<div class="col-sm-3">
+									</div>
+									<div class="col-sm-6">								
+										@if(env.resource("public/images/userImages/"+currentCustomer.getName()+".jpg").isDefined) {
+											<img src="/assets/images/userImages/@(currentCustomer.getName()+".jpg")" class="img-responsive" id="ProfilePhoto" alt="Members Personal Image"/>
+										}else {
+											<img src="/assets/images/userImages/thumbnails/default.png" class="img-responsive" alt="Members Personal Image"/>		
+										}
+										
+										<br>
+										<input  type="file" class="btn-xs btn-default" name="upload" >
+									</div>	
+									<div class="col-sm-3">
+									</div>
+								</div>
+				}				
+							<input type="submit" value="Save" class="btn" id="Buttons">
+							<a href="@controllers.security.routes.LoginSignUpController.editProfile()" class="btn btn-warning">Cancel</a>
+						
+				
+							
+							
+
+						</div>	
+					</div>
+					<div class="co-sm-2">
+					</div>				
+				</div>
+				<div class="col-sm-2">
+				</div>
+					
+}

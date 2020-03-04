@@ -1,0 +1,39 @@
+@(addPostForm: Form[models.PostForm],currentTopic : models.Topic, user: models.users.User, env: play.api.Environment)
+
+@import helper._
+
+@main("Add Post", user) {
+
+<!-- Use the views.html.helpers package to create the form -->
+	<div class="col-sm-2">
+	</div>
+		<div class="col-sm-8">
+			<div class="row">
+<h3>Add a new Post</h3>
+<form action="@routes.HomeController.addPostSubmit()" method="POST">
+<textarea row="10" name="postDescription" class="form-control" placeholder="Enter post..."> </textarea>
+<input type="hidden" name="postTopicId" value="@currentTopic.getTopicId()">
+<input type="hidden" name="email" value="@currentTopic.getUser()">
+
+			</div>
+		
+
+	
+		
+<!-- submit button -->
+<div class="actions">
+	<input type="submit" value="Save" class="btn" id="ButtonsForum" style="float:left;margin:1em;">
+	<a href="@routes.HomeController.topic(currentTopic.getTopicId())" class="btn" id="ButtonsForum" style="margin:1em;">
+	Cancel</a>
+</div>	
+		</div>
+	<div class="col-sm-2">
+	</div>
+
+</form>
+<!-- End Form definition -->
+
+} <!-- End of page content -->
+
+
+
